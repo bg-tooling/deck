@@ -20,6 +20,9 @@ final class RandomShuffler
      */
     public function __invoke(array $cards): array
     {
-        return $this->randomizer->shuffleArray($cards);
+        /** @var list<TCard> $result */
+        $result = $this->randomizer->shuffleArray($cards);
+
+        return $result;
     }
 }
