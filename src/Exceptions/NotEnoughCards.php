@@ -8,5 +8,4 @@ use UnderflowException;
 
 final class NotEnoughCards extends UnderflowException implements Exception
 {
-
 }

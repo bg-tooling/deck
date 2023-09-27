@@ -8,7 +8,8 @@ namespace Tgt\Deck\Shufflers;
 final class ByStacksShuffler
 {
     public function __construct(
-        private int $countStacks = 4
+        /** @var int<2, max> $countStacks */
+        private readonly int $countStacks = 4
     ) {
     }
 
@@ -18,22 +19,25 @@ final class ByStacksShuffler
      */
     public function __invoke(array $cards): array
     {
-        /** @var list<list<TCard>> $stacks */
-        $stacks = array_fill(1, $this->countStacks, []);
-        foreach ($cards as $idx => $card) {
-            for ($i = 1; $i <= $this->countStacks; $i++) {
-                if (($idx % $i) === 0) {
-                    $stackNum = $i;
-                }
-            }
+        $stacks = array_fill(0, $this->countStacks, []);
 
-            $stacks[$stackNum][] = $card;
-            unset($cards[$idx]);
+        // Place each next card on top of the stack
+        while (count($cards) > 0) {
+            foreach ($stacks as &$stack) {
+                $nextCard = array_shift($cards);
+                if ($nextCard === null) {
+                    break;
+                }
+
+                array_unshift($stack, $nextCard);
+            }
+            unset($stack);
         }
 
+        // And put stacks on top of each other
         $result = [];
         foreach ($stacks as $stack) {
-            $result = array_merge($result, $stack);
+            array_splice($result, offset: count($result), length: 0, replacement: $stack);
         }
 
         return $result;

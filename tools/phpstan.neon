@@ -2,7 +2,8 @@ parameters:
     level: 9
     paths:
         - ../src/
-        - ../tests/
+        - ../tests/Unit
+        - ../tests/Example
     tmpDir: ../var
     strictRules:
         allRules: true
