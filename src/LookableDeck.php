@@ -6,8 +6,11 @@ namespace Tgt\Deck;
 
 use Tgt\Deck\Exceptions\NotEnoughCards;
 
-/** @template TCard */
-interface LookableDeck
+/**
+ * @template TCard
+ * @extends Deck<TCard>
+ */
+interface LookableDeck extends Deck
 {
     /**
      * Looks a cards from the deck.

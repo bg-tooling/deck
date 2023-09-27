@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Tgt\Deck;
 
-/** @template TCard */
-interface SplittableDeck
+/**
+ * @template TCard
+ * @extends Deck<TCard>
+ */
+interface SplittableDeck extends Deck
 {
     /**
      * Split the deck into $parts count new decks.

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Tgt\Deck;
 
-/** @template TCard */
-interface InsertableDeck
+/**
+ * @template TCard
+ * @extends Deck<TCard>
+ */
+interface InsertableDeck extends Deck
 {
     /**
      * Inserting a cards into the deck at a given position.
