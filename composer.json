@@ -1,0 +1,55 @@
+{
+    "name": "bg-tooling/deck",
+    "description": "Deck component for managing the cards in your game.",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "codeception/verify": "^3.0",
+        "codeception/codeception": "^5.0",
+        "ergebnis/composer-normalize": "^2.29",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "symplify/easy-coding-standard": "^12.0",
+        "vimeo/psalm": "^5.15",
+        "codeception/module-asserts": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tgt\\Deck\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "process-timeout": 600,
+        "sort-packages": false,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "scripts": {
+        "cs-check": "ecs check src tests --config tools/ecs.php",
+        "cs-fix": "ecs check src tests --config tools/ecs.php --fix",
+        "psalm": "psalm --show-info -c tools/psalm.xml",
+        "stan": "phpstan analyse -c tools/phpstan.neon",
+        "test": [
+            "@putenv XDEBUG_MODE=coverage",
+            "codecept run -c tools/codeception.yml"
+        ],
+        "infect": [
+            "@putenv XDEBUG_MODE=coverage",
+            "infection"
+        ]
+    }
+}

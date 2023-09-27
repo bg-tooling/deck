@@ -1,0 +1,14 @@
+.idea
+dev-stuff
+build
+vendor
+.php_cs.cache
+phpcs.xml
+phpunit.xml
+clover.xml
+coveralls-upload.json
+composer.lock
+.DS_Store
+swagger/swagger-constants.php
+swagger/swagger.json
+/.phive/
